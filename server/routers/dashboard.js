@@ -134,11 +134,13 @@ DashboardRouter.post("/", requireLogin, async (req, res) => {
       // Find total amount for the current month
       let monthTotalAmount = monthlyTotalAmounts.length > 0 ? monthlyTotalAmounts[0].totalAmount : 0;
 
-      // Push data for the current month to monthlyData array
-      monthlyData.push({
-        month: startDate.month() + 1,
-        totalAmount: monthTotalAmount
-      });
+       // Push data for the current month to monthlyData array
+     monthlyData.push({
+      month: startDate.month() + 1,
+      monthText: startDate.format('MMM'), 
+      monthYear: startDate.format('YYYY'),// Format month as string
+      totalAmount: monthTotalAmount
+      });
 
       // Move to the start of the next month
       startDate.add(1, 'month').startOf('day');
