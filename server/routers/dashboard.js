@@ -117,6 +117,7 @@ DashboardRouter.post("/", requireLogin, async (req, res) => {
         {
           $match: {
             user: req.userId,
+            status: {$ne : false},
             date: {
               $gte: startDateOfMonthUTC.toDate(),
               $lt: endDateOfMonthUTC.toDate()
