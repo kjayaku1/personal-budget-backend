@@ -93,7 +93,8 @@ let GetMonthlyBudgetTable = async (req, res) => {
       {
         $match: {
           user: req.userId,
-          date: { $gte: new Date(fromDate), $lte: new Date(toDate) }
+          date: { $gte: new Date(fromDate), $lte: new Date(toDate) },
+          status: {$ne : false}
         }
       },
       {
@@ -107,7 +108,8 @@ let GetMonthlyBudgetTable = async (req, res) => {
     let budget = await Budget.find(
       {
         user: req.userId,
-        date: { $gte: new Date(fromDate), $lte: new Date(toDate) }
+        date: { $gte: new Date(fromDate), $lte: new Date(toDate) },
+        status: {$ne : false}
       },
       { title: 1, category: 1, amount: 1, date: 1, status: 1, _id: 1 }
     ).sort({ date: 1 });
